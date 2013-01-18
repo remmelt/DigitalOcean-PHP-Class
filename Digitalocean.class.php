@@ -30,6 +30,25 @@ https://github.com/tuefekci/DigitalOcean-PHP-Class
 *************************************************/
 
 class Digitalocean {
+	/**
+	 * @var ApiConnector
+	 */
+	private $apiConnector;
+
+	/**
+	 * @param ApiConnector $apiConnector
+	 */
+	public function setApiConnector($apiConnector) {
+		$this->apiConnector = $apiConnector;
+	}
+
+	public function setApiKey($api_key) {
+		$this->api_key = $api_key;
+	}
+
+	public function setClientId($client_id) {
+		$this->client_id = $client_id;
+	}
 
 	var $client_id = ""; // API - CLIENT ID
 	var $api_key = ""; // API - KEY
@@ -44,31 +63,37 @@ class Digitalocean {
 	########################	
 	
 	private function connectTo($action) {
-		
+
+
+		/*
 		if(function_exists('file_get_contents')) {
-			
+
 			$content = file_get_contents($this->api_url."/".$action);
-			
+
 		} elseif (function_exists('fopen')) {
-			
+
 			$fp = fopen($this->api_url."/".$action,"r");
-		
+
 			$content = "";
-		
+
 			if ($fp) {
 				while(!feof($fp)) {
-					
+
 					$content .= fgets($fp);
-			
+
 				}
 				fclose($fp);
-			}				
-			
+			}
+
 		} else {
-			die("Error: DigitalOcean class can't connect to api!");	
+			die("Error: DigitalOcean class can't connect to api!");
 		}
-		
-		return json_decode($content);
+
+		return json_decode($content);*/
+
+
+
+		return json_decode($this->apiConnector->connectToApi($this->api_url."/".$action));
 	}
 
 	########################
@@ -285,6 +310,29 @@ class Digitalocean {
 		}
 		
 		return $return;
-	}	
+	}
 
+}
+
+class ApiConnector {
+	function connectToApi($uri) {
+		if (function_exists('file_get_contents')) {
+			$content = file_get_contents($uri);
+			return $content;
+		} elseif (function_exists('fopen')) {
+			$fp = fopen($uri, 'r');
+			$content = '';
+
+			if ($fp) {
+				while (!feof($fp)) {
+					$content .= fgets($fp);
+				}
+				fclose($fp);
+				return $content;
+			}
+			return $content;
+		} else {
+			throw new RuntimeException('Error: DigitalOcean class cannot connect to api!');
+		}
+	}
 }
