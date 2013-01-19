@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a12" title="">
+  <file path="DigitalOcean.class.php" hash="65f8738b67705c3f504981c37abdae3e" package="Default">
+    <class final="false" abstract="false" namespace="DigitalOceanAPI" line="34" package="Default">
+      <extends/>
+      <name>DigitalOcean</name>
+      <full_name>\DigitalOceanAPI\DigitalOcean</full_name>
+      <docblock line="4">
+        <description>DigitalOcean PHP Class</description>
+        <long-description>&lt;p&gt;Author: Giacomo Tüfekci &lt;a href="&amp;#109;&amp;#x61;&amp;#105;&amp;#x6c;&amp;#116;&amp;#x6f;:&amp;#103;&amp;#x69;&amp;#97;&amp;#x63;&amp;#111;&amp;#x6d;o&amp;#46;&amp;#x74;&amp;#117;&amp;#x65;&amp;#102;&amp;#x65;k&amp;#99;&amp;#x69;&amp;#64;&amp;#x67;&amp;#111;&amp;#x6f;g&amp;#108;&amp;#x65;&amp;#109;&amp;#x61;&amp;#105;&amp;#x6c;.&amp;#99;&amp;#x6f;&amp;#109;"&gt;&amp;#103;&amp;#x69;&amp;#97;&amp;#x63;&amp;#111;&amp;#x6d;o&amp;#46;&amp;#x74;&amp;#117;&amp;#x65;&amp;#102;&amp;#x65;k&amp;#99;&amp;#x69;&amp;#64;&amp;#x67;&amp;#111;&amp;#x6f;g&amp;#108;&amp;#x65;&amp;#109;&amp;#x61;&amp;#105;&amp;#x6c;.&amp;#99;&amp;#x6f;&amp;#109;&lt;/a&gt;
+Additions: Remmelt Pit &lt;a href="&amp;#109;&amp;#x61;&amp;#105;&amp;#x6c;&amp;#116;&amp;#x6f;:&amp;#114;&amp;#x65;&amp;#109;&amp;#x6d;&amp;#101;&amp;#x6c;t&amp;#64;&amp;#x67;&amp;#109;&amp;#x61;&amp;#105;&amp;#x6c;.&amp;#99;&amp;#x6f;&amp;#109;"&gt;&amp;#114;&amp;#x65;&amp;#109;&amp;#x6d;&amp;#101;&amp;#x6c;t&amp;#64;&amp;#x67;&amp;#109;&amp;#x61;&amp;#105;&amp;#x6c;.&amp;#99;&amp;#x6f;&amp;#109;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Copyright (c): 2012 Is.It.Media, all rights reserved
+Version: 1.0.0 - 2012-10-26
+Version: 1.1.0 - 2013-01-16&lt;/p&gt;
+
+&lt;p&gt;This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.&lt;/p&gt;
+
+&lt;p&gt;This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.&lt;/p&gt;
+
+&lt;p&gt;You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA&lt;/p&gt;
+
+&lt;p&gt;You may contact the author of DigitalOcean PHP Class by e-mail at:
+giacomo.tuefekci@googlemail.com&lt;/p&gt;
+
+&lt;p&gt;The latest version of DigitalOcean PHP Class can be obtained from:
+https://github.com/tuefekci/DigitalOcean-PHP-Class&lt;/p&gt;</long-description>
+      </docblock>
+      <constant namespace="DigitalOceanAPI" line="39" package="Default">
+        <name>API_URL</name>
+        <full_name>API_URL</full_name>
+        <value>'https://api.digitalocean.com'</value>
+        <docblock line="36">
+          <description>The API base url</description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <property final="false" static="false" visibility="private" line="45" namespace="DigitalOceanAPI" package="Default">
+        <name>$clientId</name>
+        <default></default>
+        <docblock line="41">
+          <description>The Client ID as provided by Digital Ocean</description>
+          <long-description></long-description>
+          <tag line="41" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="51" namespace="DigitalOceanAPI" package="Default">
+        <name>$apiKey</name>
+        <default></default>
+        <docblock line="47">
+          <description>The API key as provided by Digital Ocean</description>
+          <long-description></long-description>
+          <tag line="47" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="57" namespace="DigitalOceanAPI" package="Default">
+        <name>$apiConnector</name>
+        <default></default>
+        <docblock line="53">
+          <description>External connection class to facilitate testing</description>
+          <long-description></long-description>
+          <tag line="53" name="var" description="" type="\DigitalOceanAPI\ApiConnector">
+            <type by_reference="false">\DigitalOceanAPI\ApiConnector</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="67" package="Default">
+        <name>setApiConnector</name>
+        <full_name>setApiConnector</full_name>
+        <docblock line="63">
+          <description>Setter for the API connector class</description>
+          <long-description></long-description>
+          <tag line="63" name="param" description="" type="\DigitalOceanAPI\ApiConnector" variable="$apiConnector">
+            <type by_reference="false">\DigitalOceanAPI\ApiConnector</type>
+          </tag>
+        </docblock>
+        <argument line="67">
+          <name>$apiConnector</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="76" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="71">
+          <description>Constructor</description>
+          <long-description></long-description>
+          <tag line="71" name="param" description="" type="String" variable="$clientId">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="71" name="param" description="" type="String" variable="$apiKey">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+        <argument line="76">
+          <name>$clientId</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="76">
+          <name>$apiKey</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="DigitalOceanAPI" line="86" package="Default">
+        <name>connectTo</name>
+        <full_name>connectTo</full_name>
+        <docblock line="81">
+          <description>Send command to API</description>
+          <long-description></long-description>
+          <tag line="81" name="param" description="" type="\DigitalOceanAPI\" variable="$action"/>
+          <tag line="81" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="86">
+          <name>$action</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="103" package="Default">
+        <name>getDroplets</name>
+        <full_name>getDroplets</full_name>
+        <docblock line="98">
+          <description>Show All Active Droplets
+This method returns all active droplets that are currently running in your account.</description>
+          <long-description>&lt;p&gt;All available API information is presented for each droplet.&lt;/p&gt;</long-description>
+          <tag line="98" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="113" package="Default">
+        <name>showDroplet</name>
+        <full_name>showDroplet</full_name>
+        <docblock line="107">
+          <description>Show Droplet
+This method returns full information for a specific droplet ID that is passed in the URL.</description>
+          <long-description></long-description>
+          <tag line="107" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="107" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="113">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="126" package="Default">
+        <name>newDroplet</name>
+        <full_name>newDroplet</full_name>
+        <docblock line="117">
+          <description>New Droplet
+This method returns full information for a specific droplet ID that is passed in the URL.</description>
+          <long-description></long-description>
+          <tag line="117" name="param" description="" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="117" name="param" description="" type="int" variable="$sizeId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="117" name="param" description="" type="int" variable="$imageId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="117" name="param" description="" type="int" variable="$regionId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="117" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="126">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="126">
+          <name>$sizeId</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="126">
+          <name>$imageId</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="126">
+          <name>$regionId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="136" package="Default">
+        <name>reboot</name>
+        <full_name>reboot</full_name>
+        <docblock line="130">
+          <description>Reboot Droplet
+This method allows you to reboot a droplet.</description>
+          <long-description>&lt;p&gt;This is the preferred method to use if a server is not responding.&lt;/p&gt;</long-description>
+          <tag line="130" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="130" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="136">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="146" package="Default">
+        <name>powerCycle</name>
+        <full_name>powerCycle</full_name>
+        <docblock line="140">
+          <description>Power Cycle Droplet
+This method allows you to power cycle a droplet.</description>
+          <long-description>&lt;p&gt;This will turn off the droplet and then turn it back on.&lt;/p&gt;</long-description>
+          <tag line="140" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="140" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="146">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="156" package="Default">
+        <name>shutDown</name>
+        <full_name>shutDown</full_name>
+        <docblock line="150">
+          <description>Shut Down Droplet
+This method allows you to shutdown a running droplet.</description>
+          <long-description>&lt;p&gt;The droplet will remain in your account.&lt;/p&gt;</long-description>
+          <tag line="150" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="150" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="156">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="166" package="Default">
+        <name>powerOff</name>
+        <full_name>powerOff</full_name>
+        <docblock line="160">
+          <description>Power Off
+This method allows you to power off a running droplet.</description>
+          <long-description>&lt;p&gt;The droplet will remain in your account.&lt;/p&gt;</long-description>
+          <tag line="160" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="160" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="166">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="176" package="Default">
+        <name>powerOn</name>
+        <full_name>powerOn</full_name>
+        <docblock line="170">
+          <description>Power On
+This method allows you to power on a powered off droplet.</description>
+          <long-description></long-description>
+          <tag line="170" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="170" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="176">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="186" package="Default">
+        <name>resetRootPassword</name>
+        <full_name>resetRootPassword</full_name>
+        <docblock line="180">
+          <description>Reset Root Password
+This method will reset the root password for a droplet.</description>
+          <long-description>&lt;p&gt;Please be aware that this will reboot the droplet to allow resetting the password.&lt;/p&gt;</long-description>
+          <tag line="180" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="180" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="186">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="197" package="Default">
+        <name>resizeDroplet</name>
+        <full_name>resizeDroplet</full_name>
+        <docblock line="190">
+          <description>Resize Droplet
+This method allows you to resize a specific droplet to a different size.</description>
+          <long-description>&lt;p&gt;This will affect the number of processors and memory allocated to the droplet.&lt;/p&gt;</long-description>
+          <tag line="190" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="190" name="param" description="" type="int" variable="$sizeId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="190" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="197">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="197">
+          <name>$sizeId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="208" package="Default">
+        <name>takeASnapshot</name>
+        <full_name>takeASnapshot</full_name>
+        <docblock line="201">
+          <description>Take a Snapshot
+This method allows you to resize a specific droplet to a different size.</description>
+          <long-description>&lt;p&gt;This will affect the number of processors and memory allocated to the droplet.&lt;/p&gt;</long-description>
+          <tag line="201" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="201" name="param" description="" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="201" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="208">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="208">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="219" package="Default">
+        <name>restore</name>
+        <full_name>restore</full_name>
+        <docblock line="212">
+          <description>Restore Droplet
+This method allows you to resize a specific droplet to a different size.</description>
+          <long-description>&lt;p&gt;This will affect the number of processors and memory allocated to the droplet.&lt;/p&gt;</long-description>
+          <tag line="212" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="212" name="param" description="" type="int" variable="$imageId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="212" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="219">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="219">
+          <name>$imageId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="230" package="Default">
+        <name>rebuild</name>
+        <full_name>rebuild</full_name>
+        <docblock line="223">
+          <description>Rebuild Droplet
+This method allows you to reinstall a droplet with a default image.</description>
+          <long-description>&lt;p&gt;This is useful if you want to start again but retain the same IP address for your droplet.&lt;/p&gt;</long-description>
+          <tag line="223" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="223" name="param" description="" type="int" variable="$imageId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="223" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="230">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="230">
+          <name>$imageId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="240" package="Default">
+        <name>enableBackups</name>
+        <full_name>enableBackups</full_name>
+        <docblock line="234">
+          <description>Enable Automatic Backups
+This method enables automatic backups which run in the background daily to backup your droplet's data.</description>
+          <long-description></long-description>
+          <tag line="234" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="234" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="240">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="250" package="Default">
+        <name>disableBackups</name>
+        <full_name>disableBackups</full_name>
+        <docblock line="244">
+          <description>Disable Automatic Backups
+This method disables automatic backups from running to backup your droplet's data.</description>
+          <long-description></long-description>
+          <tag line="244" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="244" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="250">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="260" package="Default">
+        <name>destroy</name>
+        <full_name>destroy</full_name>
+        <docblock line="254">
+          <description>Destroy Droplet
+This method destroys one of your droplets - this is irreversible.</description>
+          <long-description></long-description>
+          <tag line="254" name="param" description="" type="int" variable="$dropletId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="254" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="260">
+          <name>$dropletId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="273" package="Default">
+        <name>getRegions</name>
+        <full_name>getRegions</full_name>
+        <docblock line="268">
+          <description>All Regions
+This method will return all the available regions within the Digital Ocean cloud.</description>
+          <long-description></long-description>
+          <tag line="268" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="292" package="Default">
+        <name>getImages</name>
+        <full_name>getImages</full_name>
+        <docblock line="287">
+          <description>All Images
+This method returns all the available images that can be accessed by your client ID.</description>
+          <long-description>&lt;p&gt;You will have access to all public images by default, and any snapshots or backups that you have created in your own account.&lt;/p&gt;</long-description>
+          <tag line="287" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="308" package="Default">
+        <name>showImage</name>
+        <full_name>showImage</full_name>
+        <docblock line="302">
+          <description>Show Image
+This method displays the attributes of an image.</description>
+          <long-description></long-description>
+          <tag line="302" name="param" description="" type="int" variable="$imageId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="302" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="308">
+          <name>$imageId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="318" package="Default">
+        <name>destroyImage</name>
+        <full_name>destroyImage</full_name>
+        <docblock line="312">
+          <description>Destroy Image
+This method allows you to destroy an image.</description>
+          <long-description>&lt;p&gt;There is no way to restore a deleted image so be careful and ensure your data is properly backed up.&lt;/p&gt;</long-description>
+          <tag line="312" name="param" description="" type="int" variable="$imageId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="312" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="318">
+          <name>$imageId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="331" package="Default">
+        <name>getSSHKeys</name>
+        <full_name>getSSHKeys</full_name>
+        <docblock line="326">
+          <description>All SSH Keys
+This method lists all the available public SSH keys in your account that can be added to a droplet.</description>
+          <long-description></long-description>
+          <tag line="326" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="341" package="Default">
+        <name>showSSHKey</name>
+        <full_name>showSSHKey</full_name>
+        <docblock line="335">
+          <description>Show SSH Key
+This method shows a specific public SSH key in your account that can be added to a droplet.</description>
+          <long-description></long-description>
+          <tag line="335" name="param" description="" type="int" variable="$sshKeyId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="335" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="341">
+          <name>$sshKeyId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="351" package="Default">
+        <name>addSSHKey</name>
+        <full_name>addSSHKey</full_name>
+        <docblock line="345">
+          <description>Add SSH Key
+This method allows you to add a new public SSH key to your account.</description>
+          <long-description></long-description>
+          <tag line="345" name="param" description="" type="int" variable="$sshKeyId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="345" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="351">
+          <name>$sshKeyId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="361" package="Default">
+        <name>editSSHKey</name>
+        <full_name>editSSHKey</full_name>
+        <docblock line="355">
+          <description>Edit SSH Key
+This method allows you to modify an existing public SSH key in your account.</description>
+          <long-description></long-description>
+          <tag line="355" name="param" description="" type="int" variable="$sshKeyId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="355" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="361">
+          <name>$sshKeyId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="371" package="Default">
+        <name>destroySSHKey</name>
+        <full_name>destroySSHKey</full_name>
+        <docblock line="365">
+          <description>Destroy SSH Key
+This method will delete the SSH key from your account.</description>
+          <long-description></long-description>
+          <tag line="365" name="param" description="" type="int" variable="$sshKeyId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="365" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="371">
+          <name>$sshKeyId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="384" package="Default">
+        <name>getSizes</name>
+        <full_name>getSizes</full_name>
+        <docblock line="379">
+          <description>Sizes
+Sizes indicate the amount of memory and processors that will be allocated to your droplet on creation.</description>
+          <long-description></long-description>
+          <tag line="379" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <class final="false" abstract="false" namespace="DigitalOceanAPI" line="399" package="Default">
+      <extends/>
+      <name>ApiConnector</name>
+      <full_name>\DigitalOceanAPI\ApiConnector</full_name>
+      <docblock line="396">
+        <description>Helper class to connect to the API</description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="DigitalOceanAPI" line="406" package="Default">
+        <name>connectToApi</name>
+        <full_name>connectToApi</full_name>
+        <docblock line="400">
+          <description>Send command to the API</description>
+          <long-description></long-description>
+          <tag line="400" name="param" description="" type="\DigitalOceanAPI\" variable="$uri"/>
+          <tag line="400" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="400" name="throws" description="if no connection methods were found" type="\RuntimeException">
+            <type by_reference="false">\RuntimeException</type>
+          </tag>
+        </docblock>
+        <argument line="406">
+          <name>$uri</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file DigitalOcean.class.php</error>
+    </parse_markers>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <namespace name="DigitalOceanAPI" full_name="DigitalOceanAPI"/>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>
